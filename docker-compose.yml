@@ -1,0 +1,44 @@
+# DUID="$(id -u)" DGID="$(id -g)" docker compose build dev-fixid
+# docker compose run --service-ports --rm dev-backend
+# docker compose --profile dev up
+# docker compose --profile dev down
+
+version: "3.9"
+
+x-node-command: &node-command
+  command: bash -c
+          "cat /etc/os-release | grep PRETTY_NAME | cut -d'=' -f2;
+          echo node `node -v`; 
+          echo npm `npm -v`;
+          echo yarn `yarn -v`; 
+          echo pnpm `pnpm -v`;"
+
+x-wait-command: &wait-command
+  command: bash -c 
+          "while sleep 1000; do :; done;"
+
+services:
+  dev:
+    <<: [*wait-command]
+    image: ghcr.io/armando-fandango/ezdev/ezdev:0.9-node-alpine-dev
+    volumes:
+      - .:/workspace
+      - /data:/data
+    working_dir: /workspace
+    ports:
+      - "${HOST_BACKEND_PORT:-3000}:3000"
+
+  web-server:
+    image: nginx:alpine-slim
+    depends_on:
+      - dev
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/local-nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/local.crt:/etc/nginx/ssl/certs/nginx.crt
+      - ./nginx/local.key:/etc/nginx/ssl/private/nginx.key
+      - /data:/data
+    restart: unless-stopped
+
