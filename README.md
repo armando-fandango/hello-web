@@ -6,8 +6,8 @@ Hello Web Sample Project - Empty - Pull requests welcome.
 
 Based on:
 
-Alpine Linux v3.18
-node v21.2.0
-npm 10.2.3
-yarn 1.22.21
-pnpm 8.11.0
+- Alpine Linux v3.18
+- node v21.2.0
+- npm 10.2.3
+- yarn 1.22.21
+- pnpm 8.11.0

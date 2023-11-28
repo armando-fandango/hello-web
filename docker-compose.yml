@@ -1,8 +1,3 @@
-# DUID="$(id -u)" DGID="$(id -g)" docker compose build dev-fixid
-# docker compose run --service-ports --rm dev-backend
-# docker compose --profile dev up
-# docker compose --profile dev down
-
 version: "3.9"
 
 x-node-command: &node-command
