@@ -6,17 +6,18 @@
 	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
 	"dockerComposeFile": [
 		"../docker-compose.yml"
-	//	"docker-compose.yml"
 	],
-	// adds while sleep 100; do :; done; to the container startup. Useful for keeping the container alive for debugging or setup.
+	// Turning true disables the entrypoint and instead adds "while sleep 100; do :; done;" 
+	// to the container startup. Useful for keeping the container alive for debugging or setup.
 	"overrideCommand": false,
+
+	// Uncomment the next line if you want start specific services in your Docker Compose config.
+	"runServices": ["dev"],
 
 	// The 'service' property is the name of the service for the container that VS Code should
 	// use. Update this value and .devcontainer/docker-compose.yml to the real service name.
 	"service": "dev",
 
-	// The optional 'workspaceFolder' property is the path VS Code should open by default when
-	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
 	"workspaceFolder": "/workspace",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
@@ -25,8 +26,6 @@
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
-	// Uncomment the next line if you want start specific services in your Docker Compose config.
-	"runServices": ["dev"],
 
 	// Uncomment the next line if you want to keep your containers running after VS Code shuts down.
 	// "shutdownAction": "none",
@@ -34,28 +33,35 @@
 	// Uncomment the next line to run commands after the container is created.
 	// "postCreateCommand": "cat /etc/os-release",
 
-	// Configure tool-specific properties.
-	// "customizations": {},
-
 	"customizations": {
 		// Configure properties specific to VS Code.
 		"vscode": {
-			// Set *default* container specific settings.json values on container create.
 			"settings": { 
-
+				"editor.codeActionsOnSave": {
+					"source.fixAll.eslint": true,
+					"source.formatDocument": true
+				},
+				"editor.formatOnSave": true,
+				"editor.tabSize": 2,
+				"prettier.printWidth": 80,
+				"prettier.requireConfig": false,
+				"prettier.singleQuote": true,
+				"prettier.useTabs": true,
+				"prettier.tabWidth": 2,
+				"prettier.trailingComma": "es5"
 			},
 			
-			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
-				"github.copilot",
+				"dotenv.dotenv-vscode",
+				"editorconfig.editorconfig",
+				"esbenp.prettier-vscode",
 				"dbaeumer.vscode-eslint",
-				"esbenp.prettier-vscode"
+				"github.copilot",
+				"redhat.vscode-yaml"
 			]
 		}
 	},
 
-	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "devcontainer"
 	"remoteUser": "ezdev",
 	"containerUser": "ezdev",
 	"updateRemoteUserUID": false

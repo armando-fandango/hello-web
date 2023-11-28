@@ -1,5 +1,6 @@
-# hello-web
-Hello Web Sample Project - Empty - Pull requests welcome.
+# Hello Web Sample Project - Pull requests welcome.
+
+[Use this template](https://github.com/armando-fandango/hello-web/generate)
 
 - Change the `.env` file to match your environment and then open in container inside vscode.
 - Remove /data:/data in docker-compose.yml if you don't want have this volume to mount.
