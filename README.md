@@ -11,3 +11,10 @@ Based on:
 - npm 10.2.3
 - yarn 1.22.21
 - pnpm 8.11.0
+
+To create and develop the app:
+
+```bash
+pnpm create next-app hello-app --ts --tailwind --eslint --app --src-dir --import-alias "@/*" --use-pnpm
+pnpm dev
+```

@@ -1,8 +1,4 @@
-.ipynb_checkpoints/
-*.h5
-*.png
-.Trash*/
-notebooks/archived/
-notebooks/.ipynb_checkpoints/*
+.pnpm-store
+hello-app
 
 

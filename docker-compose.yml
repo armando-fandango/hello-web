@@ -21,19 +21,6 @@ services:
       - /data:/data
     working_dir: /workspace
     ports:
-      - "${HOST_BACKEND_PORT:-3000}:3000"
+      - "${HOST_BACKEND_PORT}:3000"
 
-  web-server:
-    image: nginx:alpine-slim
-    depends_on:
-      - dev
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx/local-nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./nginx/local.crt:/etc/nginx/ssl/certs/nginx.crt
-      - ./nginx/local.key:/etc/nginx/ssl/private/nginx.key
-      - /data:/data
-    restart: unless-stopped
 
